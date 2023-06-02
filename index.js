@@ -1,4 +1,4 @@
-const RollingSky = {
+const RollingSkyData = {
 	ThemeName: themesdata.themename,
 	ThemeData: themesdata.themetextures.data,
 	DisplayThemes: [117, 118, 119],
@@ -7,7 +7,7 @@ const RollingSky = {
 }
 
 function GetTheme(num) {
-	let theme = RollingSky.ThemeData.find((themeObject) => { if (themeObject.id == num) { return true; } });
+	let theme = RollingSkyData.ThemeData.find((themeObject) => { if (themeObject.id == num) { return true; } });
 	return theme;
 }
 
@@ -30,7 +30,7 @@ window.addEventListener('touchend', () => {
 	window.isTouchEnded = true;
 });
 
-RollingSky.DisplayThemes.forEach((num) => {
+RollingSkyData.DisplayThemes.forEach((num) => {
 	let theme = GetTheme(num);
 	
 	let listElement = document.createElement('li');
@@ -42,7 +42,7 @@ RollingSky.DisplayThemes.forEach((num) => {
 	leftDivSpriteDownload.src = 'WebAssets/Assets/下载.svg';
 	leftDiv.appendChild(leftDivSpriteDownload);
 	let leftDivSpriteBackground = document.createElement('img');
-	leftDivSpriteBackground.src = `${RollingSky.SpriteURL}${theme.files.background}.png`;
+	leftDivSpriteBackground.src = `${RollingSkyData.SpriteURL}${theme.files.background}.png`;
 	leftDiv.appendChild(leftDivSpriteBackground);
 	
 	const clickEvent = () => {
@@ -56,7 +56,7 @@ RollingSky.DisplayThemes.forEach((num) => {
 	
 	let rightDiv = document.createElement('div');
 	let rightDivTitle = document.createElement('span');
-	rightDivTitle.innerHTML = `${RollingSky.ThemeName[num]} <span>${num}</span>`;
+	rightDivTitle.innerHTML = `${RollingSkyData.ThemeName[num]} <span>${num}</span>`;
 	rightDiv.appendChild(rightDivTitle);
 	let rightDivImageContainer = document.createElement('div');
 	Object.keys(theme.files).forEach((spriteName) => {
@@ -64,7 +64,7 @@ RollingSky.DisplayThemes.forEach((num) => {
 			return;
 		}
 		let img = document.createElement('img');
-		img.src = `${RollingSky.SpriteURL}${theme.files[spriteName]}.png`;
+		img.src = `${RollingSkyData.SpriteURL}${theme.files[spriteName]}.png`;
 		rightDivImageContainer.appendChild(img);
 	});
 	rightDiv.appendChild(rightDivImageContainer);
@@ -72,7 +72,7 @@ RollingSky.DisplayThemes.forEach((num) => {
 	listElement.appendChild(leftDiv);
 	listElement.appendChild(rightDiv);
 	
-	RollingSky.ThemesList.appendChild(listElement);
+	RollingSkyData.ThemesList.appendChild(listElement);
 });
 
 String.prototype.hash = function(seed = 0) {
@@ -92,13 +92,13 @@ String.prototype.hash = function(seed = 0) {
 };
 
 function zipFiles(id) {
-	let name = RollingSky.ThemeName[id];
+	let name = RollingSkyData.ThemeName[id];
 	let b = [];
 	let c = GetTheme(id).files;
 	Object.keys(c).forEach((e) => {
 		b.push(c[e]);
 	});
-	makeZip(b, RollingSky.SpriteURL, name);
+	makeZip(b, RollingSkyData.SpriteURL, name);
 }
 
 function makeZip(fileNames, directoryPath, zipName) {
