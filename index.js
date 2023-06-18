@@ -1,7 +1,7 @@
 const RollingSkyData = {
 	ThemeName: themesdata.themename,
 	ThemeData: themesdata.themetextures.data,
-	DisplayThemes: [117, 118, 119, 130, 131],
+	DisplayThemes: [117, 118, 119, 130, 131, 132, 133, 134, 135, 136],
 	ThemesList: document.querySelector('#ThemesList'),
 	SpriteURL: "WebAssets/Spritesheets/"
 }
